@@ -1,0 +1,62 @@
+:root {
+  --bg: #0e1116; --panel: #161b22; --panel2: #1c2330; --ink: #e6edf3; --muted: #8b949e;
+  --line: #2b3340; --accent: #58a6ff; --good: #3fb950; --warn: #d29922; --bad: #f85149;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.45; }
+h1, h2, h3 { margin: 0; }
+button {
+  background: var(--panel2); color: var(--ink); border: 1px solid var(--line); border-radius: 8px;
+  padding: 8px 12px; font-size: 13px; cursor: pointer; font-family: var(--sans);
+}
+button:hover { border-color: var(--accent); }
+button:disabled { opacity: .4; cursor: not-allowed; }
+button.primary { background: #1f6feb; border-color: #1f6feb; color: #fff; }
+button.good { border-color: var(--good); color: var(--good); }
+button.bad { border-color: var(--bad); color: var(--bad); }
+.muted { color: var(--muted); }
+textarea, input { background: #0a0d12; color: var(--ink); border: 1px solid var(--line); border-radius: 8px; font-family: var(--mono); font-size: 12px; padding: 8px; width: 100%; }
+
+.app { display: flex; min-height: 100vh; }
+.sidebar { width: 260px; flex: 0 0 260px; border-right: 1px solid var(--line); padding: 16px; background: linear-gradient(180deg, #11161d, #0e1116); }
+.sidebar h1 { font-size: 16px; }
+.sidebar .sub { color: var(--muted); font-size: 12px; margin: 4px 0 16px; }
+.actorlist { display: flex; flex-direction: column; gap: 8px; }
+.actorlist button { text-align: left; display: block; }
+.actorlist button.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+.actorlist .pat { color: var(--muted); font-size: 11px; font-family: var(--mono); }
+.main { flex: 1; padding: 20px; display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.card h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); margin-bottom: 8px; }
+.col { display: flex; flex-direction: column; gap: 12px; }
+.col.left { flex: 1 1 520px; min-width: 420px; }
+.col.right { flex: 1 1 360px; min-width: 320px; max-width: 520px; }
+
+.nowstate { font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+.thought { font-style: italic; margin-top: 6px; min-height: 20px; }
+.tag { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 1px 6px; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); }
+
+.log { height: 180px; overflow: auto; font-family: var(--mono); font-size: 11.5px; background: #0a0d12; border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+.log .from { color: var(--muted); }
+.log .to { color: var(--good); }
+.ctx { max-height: 260px; overflow: auto; font-family: var(--mono); font-size: 11px; background: #0a0d12; border: 1px solid var(--line); border-radius: 8px; padding: 8px; white-space: pre-wrap; }
+.messages { max-height: 220px; overflow: auto; display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+.msg { padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line); }
+.msg .ch { font-family: var(--mono); font-size: 10px; color: var(--muted); display: block; }
+.row { display: flex; gap: 8px; align-items: center; }
+.chatbox { display: flex; gap: 8px; margin-top: 8px; }
+
+canvas { background: #0a0d12; border: 1px solid var(--line); border-radius: 10px; display: block; }
+.hearts { color: var(--bad); font-size: 16px; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-top: 8px; }
+.legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; vertical-align: -1px; margin-right: 4px; }
+
+.overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(5, 8, 12, .82); z-index: 10; }
+.overlay .box { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 28px 34px; text-align: center; max-width: 420px; }
+.overlay h2 { font-size: 26px; margin-bottom: 6px; }
+.hil { border: 1px solid #db61a2; background: rgba(219, 97, 162, .08); }
+.hil h2 { color: #db61a2; }

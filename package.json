@@ -1,0 +1,20 @@
+{
+  "name": "automata-agents",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.29.2",
+  "description": "AutomataAgents — agentic patterns as finite state machines, served over HTTP/WebSocket and played from a React SPA.",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "start:api": "pnpm --filter @automata/api start"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3",
+    "typescript": "~5.6.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
