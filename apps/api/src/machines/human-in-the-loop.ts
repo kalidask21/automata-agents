@@ -55,7 +55,7 @@ const machine = setup({
       },
     }),
     remove_tool_call: assign({ messages: ({ context }) => context.messages.slice(0, -1) }),
-    notify_admin: emit(() => ({ type: 'ADMIN_MESSAGE', data: 'Tool use approval required. Send `approve` or `deny`.' })),
+    notify_admin: emit(() => ({ type: 'ADMIN_MESSAGE', data: 'Dietary approval required before checking the pantry (possible allergen). Send `approve` or `deny`.' })),
     notify_user: emit(() => ({ type: 'CLIENT_MESSAGE', data: 'Please wait while I get approval...' })),
     notify_user_approved: emit(() => ({ type: 'CLIENT_MESSAGE', data: 'Got approval to continue...' })),
   },
@@ -64,7 +64,7 @@ const machine = setup({
     is_approval_message: ({ event }) => (event as any).payload === 'approve',
   },
 }).createMachine({
-  id: 'Tool Approval (Recipe Agent)',
+  id: 'Dietary Gate',
   initial: 'writing',
   context: ({ input }) => ({
     messages: [

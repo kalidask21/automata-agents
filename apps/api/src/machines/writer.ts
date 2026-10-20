@@ -57,14 +57,14 @@ const machine = setup({
     })),
   },
 }).createMachine({
-  id: 'Writer (Recipe Agent)',
+  id: 'Menu Planner',
   initial: 'writing',
   context: ({ input }) => ({
     messages: [
       {
         role: 'system',
         content:
-          "You are a recipe writer that responds to feedback. Recipes are a single sentence. Begin by using the available tools to gather required information. Begin response with 'Writer:'. Do not include any ingredients in the recipe that are not available in the inventory.",
+          "You are a kitchen menu planner and recipe writer that responds to feedback. Recipes are a single sentence. Begin by using the available tools to check the pantry. Begin response with 'Chef:'. Do not include any ingredients in the recipe that are not available in the pantry.",
       },
       ...(Array.isArray(input.threadMessages) ? input.threadMessages : []),
     ],

@@ -12,6 +12,9 @@ plays them — including a server-authoritative game, **Dungeon Guardian**.
 > *predictable, observable, and resilient* while the LLM supplies the creativity. Here you can watch every
 > state transition happen live.
 
+> **🍳 Meal-prep edition (`meal-prep-app` branch):** the agents are themed as a kitchen called **Mise**. See the
+> agents table below and **[EXERCISES.md](./EXERCISES.md)** for a pattern-by-pattern practice guide.
+
 ---
 
 ## Why this architecture?
@@ -53,15 +56,16 @@ Optional config via a root `.env` (see `.env.example`): `OLLAMA_MODEL`, `OLLAMA_
 
 ## The agents
 
-| Actor (`/api/agents/:name`) | Pattern | What it shows |
+| Station (`/api/agents/:name`) | Kitchen role | Pattern |
 |---|---|---|
-| `writer` | Tool use | Calls `get_inventory` before writing a recipe. `writing ⇄ using_tool → done`. |
-| `reflection` | Reflection | A writer and a critic refine a recipe over bounded loops. |
-| `critic` | Single-step LLM | One-shot nutritionist critique. |
-| `human-in-the-loop` | Human-in-the-loop | Parks in `approval_required` until an operator Approves/Denies tool use. |
-| `writer-chat` | Interactive agent | Long-running chat; stays alive between turns. |
-| `collaboration` | Orchestration / routing | A planner routes work to specialist sub-agents, then a summarizer pitches the result. |
-| `dungeon-guardian` | Game / autonomous loop | The playable game — a guard NPC as a state machine. |
+| `menu-planner` | Plans a dish; checks the pantry (tool) before writing the recipe | Tool use |
+| `nutritionist` | Reviews a recipe and suggests healthier swaps | Single-step LLM |
+| `recipe-refiner` | Menu planner ⇄ nutritionist loop until it's healthy | Reflection |
+| `kitchen-orchestrator` | Head chef routes work across stations, then presents the meal | Orchestration / routing |
+| `dietary-gate` | Pauses for an operator Approve/Deny before a possible allergen | Human-in-the-loop |
+| `sous-chef` | Interactive chat; tweak the meal live, stays alive between turns | Interactive agent |
+| `oven-timer` | `cooking → ready → burnt` on timers; plate it in the window | **Pure FSM (no LLM)** |
+| `dungeon-guardian` | Bonus game: a guard NPC as a state machine | Game / autonomous loop |
 
 > The original repo's `code_execution` ("chartering") actor is intentionally **not** ported: it was coupled to
 > the browser inspector and `eval`'d LLM output into a child machine with no terminal state. It needs a redesign

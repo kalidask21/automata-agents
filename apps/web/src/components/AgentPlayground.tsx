@@ -63,6 +63,19 @@ export default function AgentPlayground({ actor }: { actor: ActorMeta }) {
           </div>
         )}
 
+        {actor.events && actor.events.length > 0 && sessionId && (
+          <div className="card">
+            <h2>Actions</h2>
+            <div className="row">
+              {actor.events.map((ev) => (
+                <button key={ev.type} onClick={() => send({ type: ev.type })}>
+                  {ev.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {output != null && (
           <div className="card">
             <h2>Output <span className="tag">final</span></h2>

@@ -18,6 +18,8 @@ export type ActorMeta = {
   isGame: boolean;
   /** Does this actor accept USER_MESSAGE chat input? */
   chat: boolean;
+  /** Optional one-click action buttons the SPA renders (e.g. the oven's "Plate it"). */
+  events?: { type: string; label: string }[];
   /** Example input used to pre-fill the "start session" form. */
   defaultInput?: unknown;
 };
